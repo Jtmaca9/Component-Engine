@@ -1,0 +1,43 @@
+{
+	"name": "component-engine",
+	"displayName": "component-engine",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.35.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.componentEngine"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.componentEngine",
+				"title": "Component Engine"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test",
+		"build-ui": "parcel ./Panel/index.html --public-url ."
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"eslint": "^5.13.0",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	},
+	"dependencies": {
+		"parcel-plugin-inliner": "^1.0.10",
+		"posthtml": "^0.11.4",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"react-live": "^2.1.2"
+	}
+}
