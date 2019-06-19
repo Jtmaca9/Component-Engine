@@ -1,19 +1,12 @@
 {
-    "component-engine": "0.1",
-    "info": {
-        "description": "This is component that shows a message based on the props something like \"Hello Bob, you have cat, cat, dog\"",
-        "version": "1.0.0",
-        "title": "Awesome Component",
-        "termsOfService": "None",
-        "contact": {
-            "email": "awesome@awesome.io"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        }
-    },
+    "component-engine": "0.2",
+    "termsOfService": "None",
+    "email": "awesome@awesome.io",
+    "license":  "Apache 2.0",
+    "name": "Awesome",
+    "homepage": "http://Awesome.io",
     "main": "Awesome.js",
+    "engine": "react",
     "props": [
         {
             "name": "hello",
@@ -37,9 +30,5 @@
             },
             "collectionFormat": "multi"
         }
-    ],
-    "externalDocs": {
-        "description": "Find out more about Awesome Component",
-        "url": "http://Awesome.io"
-    }
+    ]
 }
