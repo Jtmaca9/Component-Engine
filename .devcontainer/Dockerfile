@@ -29,6 +29,9 @@ RUN apt-get update \
     # Install eslint globally
     && npm install -g eslint \
     #
+    # Install parcel TODO: maybe should be dev dependency?
+    && yarn global add parcel \
+    #
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
