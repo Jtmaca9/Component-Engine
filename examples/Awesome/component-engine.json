@@ -1,0 +1,34 @@
+{
+    "component-engine": "0.2",
+    "termsOfService": "None",
+    "email": "awesome@awesome.io",
+    "license":  "Apache 2.0",
+    "name": "Awesome",
+    "homepage": "http://Awesome.io",
+    "main": "Awesome.js",
+    "engine": "react",
+    "props": [
+        {
+            "name": "hello",
+            "description": "The name to echo Hello $name",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "name": "pets",
+            "description": "Pets of person to list",
+            "required": true,
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "dog",
+                    "cat",
+                    "fish"
+                ],
+                "default": "dog"
+            },
+            "collectionFormat": "multi"
+        }
+    ]
+}
