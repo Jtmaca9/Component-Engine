@@ -1,0 +1,45 @@
+{
+    "component-engine": "0.1",
+    "info": {
+        "description": "This is component that shows a message based on the props something like \"Hello Bob, you have cat, cat, dog\"",
+        "version": "1.0.0",
+        "title": "Awesome Component",
+        "termsOfService": "None",
+        "contact": {
+            "email": "awesome@awesome.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "main": "Awesome.js",
+    "props": [
+        {
+            "name": "hello",
+            "description": "The name to echo Hello $name",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "name": "pets",
+            "description": "Pets of person to list",
+            "required": true,
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "dog",
+                    "cat",
+                    "fish"
+                ],
+                "default": "dog"
+            },
+            "collectionFormat": "multi"
+        }
+    ],
+    "externalDocs": {
+        "description": "Find out more about Awesome Component",
+        "url": "http://Awesome.io"
+    }
+}
