@@ -4,6 +4,8 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 
+const getFiles = require('./helpers/getFiles');
+
 const window = vscode.window;
 const Disposable = vscode.Disposable;
 
@@ -24,6 +26,7 @@ function activate(context) {
 				vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
 				{ enableScripts: true } // Webview options. More on these later.
 			);
+
 			const filename = require.resolve('./dist/index.html')
 			fs.readFile(filename, 'utf8', (err, data) => {
 				if (err) {
@@ -35,17 +38,16 @@ function activate(context) {
 				panel.webview.html = data;   // Put all of the code here (not the best solution)
 			});
 			
-
 			const handleUpdate = () => {
-				let editor = window.activeTextEditor;
-				if (!editor) {
-					return;
+				try {
+					const dataObject = getFiles(window);
+					panel.webview.postMessage(dataObject);
+				} catch (error) {
+					// todo: Panel should display posted error
+					panel.webview.postMessage({ error });
 				}
-				let doc = editor.document;
-				let docContent = doc.getText();
-				
-				panel.webview.postMessage(docContent);
 			}
+
 			handleUpdate();
 			let subscriptions = [];
 			window.onDidChangeTextEditorSelection(handleUpdate, this, subscriptions);

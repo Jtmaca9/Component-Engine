@@ -1,28 +1,52 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-
 const {
     LiveProvider,
-    LiveEditor,
     LiveError,
-    LivePreview
+    LivePreview,
 } = require('react-live');
+const { default: styled } = require('styled-components');
+
+const getDefaultProps = require('./helpers/getDefaultProps');
+const PropsEditor = require('./PropsEditor/PropsEditor');
 
 const App = () => {
-    const [data, setData] = React.useState('<strong>Component Engine Ready, start writing JSX</strong>');
+    const [component, setComponent] = React.useState('render(<strong>Component Engine Ready, start writing JSX</strong>);');
+    const [componentSpec, setComponentSpec] = React.useState(null);
     React.useEffect(() => {
-        const handler = (e) => {
-            setData(e.data);
+        const handler = ({ data }) => {
+            const componentData = data.component;
+            const componentSpecData = data.componentSpec;
+            if (componentData) setComponent(componentData);
+            if (componentSpecData) setComponentSpec(componentSpecData);
         }
         window.addEventListener('message', handler);
 
         return () => window.removeEventListener('message', handler);
     }, []);
 
-    return <LiveProvider code={data}>
-        <LiveError />
-        <LivePreview />
-    </LiveProvider>
+    return componentSpec ? (
+        <Component
+            component={component}
+            setComponentSpec={setComponentSpec}
+            componentSpec={componentSpec} />
+    ) : 'Click into a file to get started!'; 
+}
+
+const Component = ({ component, componentSpec }) => {
+    const [props, setProps] = React.useState(getDefaultProps(componentSpec.props));
+    return (
+        <div>
+            <LiveProvider code={component} scope={{ props, styled }} noInline={true}>
+                <LivePreview />
+                <LiveError />
+            </LiveProvider>
+            <PropsEditor
+                propControls={componentSpec.props}
+                props={props}
+                setProps={setProps} />
+        </div>
+    );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));

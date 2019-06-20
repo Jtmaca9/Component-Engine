@@ -12,21 +12,22 @@
             "name": "hello",
             "description": "The name to echo Hello $name",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "world"
         },
         {
             "name": "pets",
             "description": "Pets of person to list",
             "required": true,
             "type": "array",
+            "default": ["dog"],
             "items": {
                 "type": "string",
                 "enum": [
                     "dog",
                     "cat",
                     "fish"
-                ],
-                "default": "dog"
+                ]
             },
             "collectionFormat": "multi"
         }
