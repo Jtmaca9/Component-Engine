@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
+const preCode = `
+const { useState, useEffect } = React;
+`;
+
+const postCode = (name) => `
+render(<${name} />);
+`;
+
 function getFiles(window) {
     let editor = window.activeTextEditor;
     if (!editor) return;
@@ -30,7 +38,7 @@ function getFiles(window) {
     if (!component) return;
 
     return ({
-        component,
+        component: `${preCode}${component}${postCode(componentSpec.name)}`,
         componentSpec,
     });
 }

@@ -34,10 +34,12 @@
 		"vscode": "^1.1.28"
 	},
 	"dependencies": {
+		"parcel-bundler": "^1.12.3",
 		"parcel-plugin-inliner": "^1.0.10",
 		"posthtml": "^0.11.4",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
-		"react-live": "^2.1.2"
+		"react-live": "^2.1.2",
+		"styled-components": "^4.3.1"
 	}
 }
