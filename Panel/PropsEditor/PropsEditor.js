@@ -11,7 +11,7 @@ const Container = styled.div`
     border: 2px solid white;
 `;
 
-const Knobs = ({ props, setProps, propControls }) => {
+const PropsEditor = ({ props, setProps, propControls }) => {
 
     function updateProp(name, value) {
         setProps(
@@ -25,7 +25,7 @@ const Knobs = ({ props, setProps, propControls }) => {
 
     return (
         <Container>
-            <h1><u>Knobs</u></h1>
+            <h1><u>Props Editor</u></h1>
             {propControls.map(({ name, type }) => {
                 if (type === 'string') {
                     return (
@@ -41,4 +41,4 @@ const Knobs = ({ props, setProps, propControls }) => {
     )
 }
 
-module.exports = Knobs;
+module.exports = PropsEditor;

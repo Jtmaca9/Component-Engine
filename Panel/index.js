@@ -8,10 +8,10 @@ const {
 const { default: styled } = require('styled-components');
 
 const getDefaultProps = require('./helpers/getDefaultProps');
-const Knobs = require('./Knobs/Knobs');
+const PropsEditor = require('./PropsEditor/PropsEditor');
 
 const App = () => {
-    const [component, setComponent] = React.useState('<strong>Component Engine Ready, start writing JSX</strong>');
+    const [component, setComponent] = React.useState('render(<strong>Component Engine Ready, start writing JSX</strong>);');
     const [componentSpec, setComponentSpec] = React.useState(null);
     React.useEffect(() => {
         const handler = ({ data }) => {
@@ -41,7 +41,7 @@ const Component = ({ component, componentSpec }) => {
                 <LivePreview />
                 <LiveError />
             </LiveProvider>
-            <Knobs
+            <PropsEditor
                 propControls={componentSpec.props}
                 props={props}
                 setProps={setProps} />

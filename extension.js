@@ -39,9 +39,13 @@ function activate(context) {
 			});
 			
 			const handleUpdate = () => {
-				const dataObject = getFiles(window);
-				if (!dataObject) return;
-				panel.webview.postMessage(dataObject);
+				try {
+					const dataObject = getFiles(window);
+					panel.webview.postMessage(dataObject);
+				} catch (error) {
+					// todo: Panel should display posted error
+					panel.webview.postMessage({ error });
+				}
 			}
 
 			handleUpdate();

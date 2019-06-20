@@ -11,7 +11,7 @@ render(<${name} />);
 
 function getFiles(window) {
     let editor = window.activeTextEditor;
-    if (!editor) return;
+    if (!editor) throw new Error('No active text editor');
 
     const doc = editor.document;
     const fileName = doc.fileName;
@@ -25,7 +25,7 @@ function getFiles(window) {
     } else {
         componentSpec = JSON.parse(fs.readFileSync(`${parentDir}/component-engine.json`, 'utf8'));
     }
-    if (!componentSpec) return;
+    if (!componentSpec) throw new Error('Cannot find component spec');
 
     const componentUrl = `${parentDir}/${componentSpec.main}`;
 
@@ -35,7 +35,7 @@ function getFiles(window) {
     } else {
         component = fs.readFileSync(`${parentDir}/${componentSpec.main}`, 'utf8');
     }
-    if (!component) return;
+    if (!component) throw new Error('Cannot find component');
 
     return ({
         component: `${preCode}${component}${postCode(componentSpec.name)}`,
