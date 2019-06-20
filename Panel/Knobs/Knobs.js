@@ -13,12 +13,12 @@ const Container = styled.div`
 
 const Knobs = ({ props, setProps, propControls }) => {
 
-    function updateProps(e, control) {
+    function updateProp(name, value) {
         setProps(
             Object.assign(
                 {},
                 props,
-                { [control.name]: e.target.value }
+                { [name]: value }
             )
         )
     }
@@ -26,13 +26,13 @@ const Knobs = ({ props, setProps, propControls }) => {
     return (
         <Container>
             <h1><u>Knobs</u></h1>
-            {propControls.map((control) => {
-                if (control.type === 'string') {
+            {propControls.map(({ name, type }) => {
+                if (type === 'string') {
                     return (
                         <StringInput
-                            control={control}
+                            name={name}
                             props={props}
-                            updateProps={updateProps} />
+                            updateProp={updateProp} />
                     )
                 }
                 return null;

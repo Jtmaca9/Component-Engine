@@ -1,12 +1,12 @@
 const React = require('react');
 
-const StringInput = ({ control, props, updateProps }) => (
+const StringInput = ({ name, props, updateProp }) => (
     <div>
-        <strong>{control.name}:  </strong>
+        <strong>{name}:  </strong>
         <input
-            value={props[control.name]}
+            value={props[name]}
             onChange={
-                (e) => updateProps(e, control)
+                (evt) => updateProp(name, evt.target.value)
             } />
     </div>
 );
